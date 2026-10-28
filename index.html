@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stone paper sessior</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+            text-align: center;
+        }
+        img{
+            cursor: pointer;
+        }
+        button{
+            cursor: 5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stone Paper Sessior Game</h1>
+    <!-- js for Stone -->
+    
+    <button class="choice-button"  onclick=" 
+        let computerChoice = generateComputerChoice();
+        let resultMsg = getResult('Stone',computerChoice);
+        showResult('Stone',computerChoice,resultMsg);
+    "><img style="height: 100px; width: 100px;" src="stone.png" alt="Stone-image" class="choice-image">
+    </button>
+ 
+    <!-- js for Paper  -->
+    <button class="choice-button" onclick="
+        computerChoice = generateComputerChoice();
+        resultMsg = getResult('Paper',computerChoice);
+        showResult('Paper',computerChoice,resultMsg);  
+    "><img style="height: 100px; width: 100px;" src="paper.png" alt="Paper-image" class="choice-image"></button>
+
+    <!-- js for Sessior -->
+    <button class="choice-button" onclick="
+        computerChoice = generateComputerChoice();
+        resultMsg = getResult('Sessior',computerChoice);
+        showResult('Sessior',computerChoice,resultMsg);
+    "><img style="height: 100px; width: 100px;" src="sissor.png" alt="Sessior-image" class="choice-image"></button>
+
+    <!-- localStorage clear button -->
+    <button onclick="localStorage.clear();
+        resetScore ();
+    ">Reset</button>
+
+    <h3 id="user-move"></h3>
+    <h3 id="computer-move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
+
+    <Script>
+        let scoreStr = localStorage.getItem('Score');
+        let score;
+        resetScore(scoreStr);
+
+        function resetScore (scoreStr){
+         score = scoreStr ? JSON.parse(scoreStr) : {
+
+            win: 0,
+            loss:0,
+            tie: 0,
+        };
+            score.displayScore = function(){
+            return `Score:- Won : ${score.win}, Lost : ${score.
+            loss}, Tie : ${score.tie},`
+            };
+            showResult();
+        }
+        function generateComputerChoice(){
+        let randomNo = Math.random()*3; 
+        if(randomNo > 0 && randomNo <=1){
+            return 'Stone';
+         }
+        else if(randomNo > 1 && randomNo <=2){
+            return 'Paper';
+        }
+        else{
+            return 'Sessior';
+        }
+        }
+
+        function getResult(userMove,computerMove){
+            if(userMove === 'Stone'){
+                if(computerMove == 'Paper'){
+                    score.win++;
+                    return 'User won';
+
+                }
+                else if(computerMove == 'Stone'){
+                    return 'Draw Match';
+                    score.tie++;
+                    
+                }
+                else {
+                    score.loss++;
+                    return 'Computer Won';
+                    
+                }
+            }
+            else if(userMove === 'Paper'){
+                if(computerMove == 'Paper'){
+                    score.tie++;
+                    return 'Draw Match';
+                    
+                }
+                else if(computerMove == 'Stone'){
+                    score.loss++;
+                    return 'Computer Won';
+                    
+                }
+                else {
+                    score.win++;
+                    return 'User Won';
+                    
+                }
+            }
+            else{
+                if(computerMove == 'Paper'){
+                    score.tie++;
+                    return 'Draw Match';
+                    
+                }
+                else if(computerMove == 'Stone'){
+                    score.loss++;
+                    return 'Computer Won';
+                    
+                }
+                else {
+                    score.win++;
+                    return 'User Won';
+                    
+                }
+            }
+        }
+        function showResult(userMove,computerMove,result){
+            localStorage.setItem('score',JSON.stringify(score));
+            console.log(score);
+
+            document.querySelector('#user-move').innerText =
+            userMove ?`you have chosen ${userMove}`:'' ;
+
+            document.querySelector('#computer-move').innerText = 
+            computerMove ? `computer chosen ${computerMove}`: '' ;
+
+            document.querySelector('#result').innerText = 
+            // result ? result: ' ' ;
+            result || '';
+            
+
+            document.querySelector('#score').innerText = 
+            score.displayScore();
+
+        // alert(`you have chosen ${userMove}, and computer chosen ${computerMove},
+        //     ${result}. 
+        //     ${score.displayScore()}`)
+        }
+    </Script>
+</body>
+</html>
