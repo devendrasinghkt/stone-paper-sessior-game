@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stone paper sessior</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Stone Paper Scissor Game </title>
     <style>
         *{
             text-align: center;
@@ -13,25 +12,25 @@
             cursor: pointer;
         }
         button{
-            cursor: 5;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Stone Paper Sessior Game</h1>
+    <h1>Stone Paper Scissor Game</h1>
     <!-- js for Stone -->
     
     <button class="choice-button"  onclick=" 
-        let computerChoice = generateComputerChoice();
-        let resultMsg = getResult('Stone',computerChoice);
+         computerChoice = generateComputerChoice();
+         resultMsg = getResult('Stone',computerChoice);
         showResult('Stone',computerChoice,resultMsg);
     "><img style="height: 100px; width: 100px;" src="stone.png" alt="Stone-image" class="choice-image">
     </button>
  
     <!-- js for Paper  -->
     <button class="choice-button" onclick="
-        computerChoice = generateComputerChoice();
-        resultMsg = getResult('Paper',computerChoice);
+          computerChoice = generateComputerChoice();
+         resultMsg = getResult('Paper',computerChoice);
         showResult('Paper',computerChoice,resultMsg);  
     "><img style="height: 100px; width: 100px;" src="paper.png" alt="Paper-image" class="choice-image"></button>
 
@@ -52,8 +51,8 @@
     <h3 id="result"></h3>
     <h3 id="score"></h3>
 
-    <Script>
-        let scoreStr = localStorage.getItem('Score');
+    <script>
+        let scoreStr = localStorage.getItem('score');
         let score;
         resetScore(scoreStr);
 
@@ -65,8 +64,7 @@
             tie: 0,
         };
             score.displayScore = function(){
-            return `Score:- Won : ${score.win}, Lost : ${score.
-            loss}, Tie : ${score.tie},`
+            return `Score:- Won : ${score.win}, Lost : ${score.loss}, Tie : ${score.tie},`
             };
             showResult();
         }
@@ -86,18 +84,19 @@
         function getResult(userMove,computerMove){
             if(userMove === 'Stone'){
                 if(computerMove == 'Paper'){
-                    score.win++;
-                    return 'User won';
+                    score.loss++;
+                    return 'computer won';
 
                 }
                 else if(computerMove == 'Stone'){
-                    return 'Draw Match';
                     score.tie++;
+                    return 'Draw Match';
+                    
                     
                 }
                 else {
-                    score.loss++;
-                    return 'Computer Won';
+                    score.win++;
+                    return 'user Won';
                     
                 }
             }
@@ -108,20 +107,20 @@
                     
                 }
                 else if(computerMove == 'Stone'){
-                    score.loss++;
-                    return 'Computer Won';
+                    score.win++;
+                    return 'user Won';
                     
                 }
                 else {
-                    score.win++;
-                    return 'User Won';
+                    score.loss++;
+                    return 'computer Won';
                     
                 }
             }
             else{
                 if(computerMove == 'Paper'){
-                    score.tie++;
-                    return 'Draw Match';
+                    score.win++;
+                    return 'user won';
                     
                 }
                 else if(computerMove == 'Stone'){
@@ -130,8 +129,8 @@
                     
                 }
                 else {
-                    score.win++;
-                    return 'User Won';
+                    score.tie++;
+                    return 'Draw Match';
                     
                 }
             }
@@ -158,6 +157,6 @@
         //     ${result}. 
         //     ${score.displayScore()}`)
         }
-    </Script>
+    </script>
 </body>
 </html>
