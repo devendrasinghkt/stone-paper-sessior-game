@@ -4,7 +4,7 @@ A simple and interactive **Stone Paper Scissors Game** built using **HTML, CSS, 
 
 ## 🚀 Live Demo
 
-**[PASTE YOUR DEPLOY LINK HERE]**
+**[https://devendrasinghkt.github.io/stone-paper-sessior-game/]**
 
 ## 🛠️ Technologies Used
 
